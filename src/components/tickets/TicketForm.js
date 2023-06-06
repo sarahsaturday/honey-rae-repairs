@@ -51,6 +51,8 @@ export const TicketForm = () => {
         })
     }
 
+    console.log('Erin')
+
     return (
         <form className="ticketForm">
             <h2 className="ticketForm__title">New Service Ticket</h2>
