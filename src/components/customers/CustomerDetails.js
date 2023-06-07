@@ -7,26 +7,23 @@ export const CustomerDetails = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:8088/customers?_expand=user&_embed=address&phoneNumber&userId=${customerId}`
+      `http://localhost:8088/customers?_expand=user&_embed=userId=${customerId}`
     )
       .then((response) => response.json())
       .then((data) => {
-        const singleEmployee = data[0];
-        updateEmployee(singleEmployee);
+        const singleCustomer = data[0];
+        updateCustomer(singleCustomer);
       });
-  }, [employeeId]);
+  }, [customerId]);
 
   return (
-    <section className="employee">
-      <header className="employee_header">
-        {employee?.user?.fullName || "Missing"}
+    <section className="customer">
+      <header className="customer_header">
+        {customer?.user?.fullName || "Missing"}
       </header>
-      <div>Email: {employee?.user?.email || "Missing"}</div>
-      <div>Specialty: {employee?.specialty || "Missing"}</div>
-      <div>Rate: {employee?.rate || "Missing"}</div>
-      <footer className="employee_footer">
-        Currently working on {employee?.employeeTickets?.length || 0} ticket(s)
-      </footer>
+      <div>Email: {customer?.user?.email || "Missing"}</div>
+      <div>Address: {customer?.address || "Missing"}</div>
+      <div>Phone: {customer?.phoneNumber || "Missing"}</div>
     </section>
   );
 };
